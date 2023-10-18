@@ -1,7 +1,9 @@
 import List from "./List";
 import Details from './Details'
 import Pagination  from "./Pagination";
-import { useState, useEffect } from 'react'
+import { useState, useEffect,useContext } from 'react'
+import { useNavigate } from "react-router-dom";
+import {ListContext} from '../EmployeeContext'
 
 
 export default function Page(){
@@ -15,6 +17,10 @@ export default function Page(){
     const [selectedItem, setSelectedItem] =useState(null)
     const [currentPage, setCurrentPage] = useState(1);
     const [sortOrder, setSortOrder] = useState('desc');
+    const navigate = useNavigate()
+
+    const { text, setText } = useContext(ListContext);
+
 
 
       
@@ -31,7 +37,8 @@ export default function Page(){
 
 
       function handleSelection(employee){
-        setSelectedItem(employee)
+        setSelectedItem(employee);
+        navigate(`/details/${employee.id}`, {state: employee})
       }
 
       function handlePrevious(){
@@ -73,6 +80,7 @@ export default function Page(){
     return(
         <>
           <div className="flex">
+            {text}test
               <div className="w-2/3 pr-10">
 
                 <div className="flex justify-between my-3">
