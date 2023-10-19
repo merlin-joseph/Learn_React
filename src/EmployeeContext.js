@@ -1,3 +1,4 @@
 import { createContext } from 'react';
 
-export const ListContext = createContext("Test Context");
+export const ListContext = createContext(null);
+export const selectedItemContext = createContext(null)
