@@ -1,15 +1,14 @@
 
-import { CartContext } from '../Contexts/CartContext';
-import { useContext } from 'react';
 
+import {  useCart } from '../Contexts/CartContext';
 
 
 export default function useCartUpdates() {
 
-    const [cartItems] = useContext(CartContext)
+    const cart = useCart()
 
     const addToCart =(data) => {
-        let list = [...cartItems]
+        let list = [...cart.cartItems]
         let updatedItem = {}
   
         let x= list.find (item => {
@@ -31,18 +30,30 @@ export default function useCartUpdates() {
     }
 
     const  removeFromCart = (data)=>{
-        let list = [...cartItems]
+        let list = [...cart.cartItems]
         let updatedItem = {}
   
         let x= list.find (item => {
           return item.id == data.id
         })
-        if(x){
+        if(x && x.count ==1 ){
+            x.count = x.count - 1;
+            updatedItem = {...x};
+
+            let newList = [...list]
+            newList = newList.filter(item => item.id != data.id)
+            return [newList,updatedItem]
+
+
+        }
+        if(x && x.count > 1){
           x.count = x.count - 1;
-          updatedItem = {...x}
+          updatedItem = {...x};
+          return [list,updatedItem]
+
+
         } 
 
-       return [list,updatedItem]
 
   
       }
