@@ -9,8 +9,7 @@ export default function ProductList(){
     
     
     const [productList, setProductList] = useState(null);
-    // const [cartItems, setCart] = useContext(CartContext);
-    // const {addToCart,removeFromCart} = useCartUpdates();
+    
     const cart = useCart()
 
     
@@ -32,7 +31,7 @@ export default function ProductList(){
           <div className="flex w-full flex-wrap justify-center">
               {productList?.map(product =>(
                 <Product 
-                 key={product.id} item = {product} addToCart={cart.addToCart} removeFromCart={cart.removeFromCart}></Product>
+                 key={product.id} item = {product} count= {cart.getItemCount(product.id)} addToCart={cart.addToCart} removeFromCart={cart.removeFromCart}></Product>
               ))}
           </div>
         </>

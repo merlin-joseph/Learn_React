@@ -8,7 +8,7 @@ export default function ListRow({item, handleSelection,selectedItem,handleDelete
             <p className="w-40 pr-3">{item?.name}</p>
             <p className="w-40 pr-3">{item?.Role}</p>
             <p className="w-48 pr-3">{item?.Description}</p>
-            <button className="text-red-500 font-bold" onClick={()=>handleDelete(item?.id)} >Delete</button>
+            <button className="text-red-500 font-bold" onClick={(e)=> {e.stopPropagation();handleDelete(item?.id)}} >Delete</button>
         </div>
     )
 

@@ -9,6 +9,7 @@ export default function Cart(){
 
     return (
         <>
+        Cart page
         {cart?.cartDetails?.cartItems?.map(product =>(
         <div key={product.id} className='shadow-xl my-4 p-2 w-1/2 mx-auto bg-slate-300 flex justify-between'> 
             {product.name} 

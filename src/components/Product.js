@@ -1,10 +1,7 @@
 
-import {  useCart } from '../Contexts/CartContext';
 
-export default function Product({item, addToCart, removeFromCart}){
+export default function Product({item,count, addToCart, removeFromCart}){
     
-    const cart = useCart()
-    let count= cart.getItemCount(item.id)
 
     return(
         <div className="shadow-xl bg-white p-4 m-2 w-1/6">
