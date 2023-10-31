@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen,waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event';
 
 import Cart from '../components/cart';
@@ -11,7 +11,7 @@ const cart = {
         {
             id:1,
             name : 'item 1',
-            count : 0
+            count : 5
 
         },
         {
@@ -25,7 +25,27 @@ const cart = {
 }
    
 
-test("test initial",  async() => {
+test("Cart rendered successfully",  async() => {
    await render (<CartProvider initialState = {cart}  ><Cart  /></CartProvider>);
     expect(screen.getByText(/item 1/i)).toBeInTheDocument();
 })
+
+
+
+
+test("Cart rendered successfully",  async() => {
+    await render (<CartProvider initialState = {cart}  ><Cart  /></CartProvider>);
+
+        
+    const Submitbtn =  await screen.getByTestId(1);
+    console.log(Submitbtn, 'stm')
+
+    userEvent.click(Submitbtn);
+    await waitFor(() => {
+
+     expect(screen.getByText(/6/i)).toBeInTheDocument();
+
+    });
+ })
+ 
+

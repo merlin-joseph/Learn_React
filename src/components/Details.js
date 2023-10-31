@@ -8,8 +8,6 @@ export default function Details({data,handleDetailSubmit}){
      function submitHandler(){
         handleDetailSubmit(data, description);
         setAsEditable(false)
-
-
       }
       function handleEdit(){
             setAsEditable(true)
@@ -22,7 +20,7 @@ export default function Details({data,handleDetailSubmit}){
             <p className="pb-2"><b>Role:</b> {data?.Role}</p>
            
             {!isDetailEditable ? ( <span><b>Bio:</b> {data?.Description}</span>) :
-            ( <input type="text" defaultValue={data?.Description} onChange ={(e) => setDescription(e.target.value)} />  )
+            ( <input type="text" aria-label="Description" defaultValue={data?.Description} onChange ={(e) => setDescription(e.target.value)} />  )
             }
 
             {!isDetailEditable ? ( <button className="w-16 pr-3 text-blue-500" type="button" onClick={handleEdit} >Edit</button>) :
